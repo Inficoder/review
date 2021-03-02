@@ -1,6 +1,11 @@
 package com.buaa.review.algorithm.leetc_algorithm;
 
+import java.net.Inet4Address;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class lc210225 {
     /**
@@ -112,9 +117,4 @@ public class lc210225 {
     }
 
 
-    public static void main(String[] args) {
-        int[] arr = {1,1,1,1};
-        int i = numIdenticalPairs(arr);
-        System.out.println(i);
-    }
 }
