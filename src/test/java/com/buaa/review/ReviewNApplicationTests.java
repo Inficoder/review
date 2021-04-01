@@ -27,14 +27,8 @@ class ReviewNApplicationTests {
 
     @Test
     void contextLoads() throws Exception {
-        Object java8Tester = new Object();
-        Integer value1 = null;
-        Integer value2 = new Integer(10);
-
-        // Optional.ofNullable - 允许传递为 null 参数
-        Optional<Integer> a = Optional.ofNullable(value1);
-
-        System.out.println(a.isPresent());
+        String s = "fff";
+        System.out.println(Integer.parseInt(s, 16));
     }
 
     public Object a(){
