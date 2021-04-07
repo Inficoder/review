@@ -118,54 +118,66 @@ public class Lc_2021_04 {
         minStack.push(-2);
         minStack.push(0);
         minStack.push(-3);
-        minStack.getMin();
-           //--> 返回 -3.
-
-        minStack.pop();
-//        minStack.top();      //返回 0.
-        System.out.println(minStack.top());
-        System.out.println(minStack.getMin());
+//        minStack.list.forEach(System.out::println);
+//        minStack.getMin();
+//        System.out.println(minStack.getMin());
+//           //--> 返回 -3.
+//-2 -2 0
+//        minStack.pop();
+//        System.out.println(minStack.min+"--"+minStack.top());
+        minStack.list.forEach(System.out::println);
+////        minStack.top();      //返回 0.
+//        System.out.println(minStack.top());
+//        System.out.println(minStack.getMin());
 //        minStack.getMin();   //--> 返回 -2.
     }
 }
 
-//2021.04.07
 class MinStack {
     ArrayList<Integer> list;
     int min;
-    int min_count;
     /** initialize your data structure here. */
     public MinStack() {
         this.list = new ArrayList<>();
     }
 
     public void push(int x) {
-        this.list.add(x);
-        if(this.list.size() == 1){
+        if(this.list.size() == 0){
             this.min = x;
-            min_count = 1;
+            this.list.add(x);
+            this.list.add(x);
         }else{
-            if(min == x){
-                min_count ++;
-            }else{
-                min = Math.min(min, x);
+            if(x <= min){
+                this.list.add(min);
+                this.list.add(x);
+                this.min = x;
+            }else {
+                this.list.add(x);
             }
         }
     }
 
     public void pop() {
-        if(this.list.size() > 0)
-            this.list.remove(list.size() - 1);
-
+        if(this.list.size() > 0) {
+            if (this.top() == this.min) {
+                this.list.remove(list.size() - 1);
+                this.min = this.top();
+                this.list.remove(list.size() - 1);
+            } else {
+                this.list.remove(list.size() - 1);
+            }
+        }
     }
 
     public int top() {
         if(list.size() != 0)
-            return this.list.get(0);
+            return this.list.get(list.size() - 1);
         return 0;
     }
 
     public int getMin() {
-        return this.min;
+        if(this.list.size() > 0)
+            return this.min;
+        return 0;
     }
 }
