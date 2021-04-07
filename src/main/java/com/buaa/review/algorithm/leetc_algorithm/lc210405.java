@@ -34,6 +34,7 @@ public class lc210405 {
         return res;
     }
 
+    //只需要判断到根号n  是因为 如果有一个因数大于根号n，那与之对应的另一个因数一定小于根号n   相当于重复了
     public static boolean isPrime(int n){
         for (int i = 2; i * i <= n; i++) {
             if(n % i == 0){
@@ -51,7 +52,7 @@ public class lc210405 {
         int[] isPrime = new int[n];
         Arrays.fill(isPrime, 1);
         int res = 0;
-        for (int i = 0; i < isPrime.length; i++) {
+        for (int i = 2; i < isPrime.length; i++) {
             if(isPrime[i] == 1){
                 res ++;
                 if(i*i < n){
@@ -87,13 +88,31 @@ public class lc210405 {
      * 在上面遍历索引的时候用到了一个非常好的技巧. 即i是从(2,int(n**0.5)+1)而非(2,n).这个技巧是可以验证的,比如说求9以内的质数个数,那么只要划掉sqrt(9)以内的质数倍数,剩下的即全为质数. 所以在划去倍数的时候也是从i*i开始划掉,而不是i+i.
      *
      * 这个解法真是太赞了!又学到了很多~~~ 和大家分享一下
-     * @param args
      */
+
+    public static int countPrimes3(int n) {
+        int[] temp = new int[n];
+        Arrays.fill(temp, 1);
+        int res = 0;
+        for (int i = 2; i < temp.length; i++) {
+            if(temp[i] == 1){
+                res ++;
+                if(i * i < n){
+                    for(int j = i * i; j < n; j += i){
+                        temp[j] = 0;
+                    }
+                }
+            }
+        }
+        return res;
+    }
 
 
     public static void main(String[] args) {
-        int i = countPrimes(10);
+        int i = countPrimes3(20);
         System.out.println(i);
     }
+
+
 
 }
