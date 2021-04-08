@@ -1,4 +1,4 @@
-package com.buaa.review.algorithm.leetc_algorithm;
+package com.buaa.review.algorithm.leetc_algorithm.lc2104;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -156,13 +156,10 @@ class MinStack {
     public void pop() {
         if(this.list.size() > 0)
             this.list.remove(list.size() - 1);
-
     }
 
     public int top() {
-        if(list.size() != 0)
-            return this.list.get(0);
-        return 0;
+        return list.size() != 0 ? list.get(0) : 0;
     }
 
     public int getMin() {

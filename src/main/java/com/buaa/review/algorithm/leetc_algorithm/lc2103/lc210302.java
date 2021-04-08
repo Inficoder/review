@@ -1,4 +1,4 @@
-package com.buaa.review.algorithm.leetc_algorithm;
+package com.buaa.review.algorithm.leetc_algorithm.lc2103;
 
 import org.apache.tomcat.jni.Time;
 
