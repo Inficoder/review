@@ -158,14 +158,6 @@ class MinStack {
     }
 
     public void pop() {
-<<<<<<< HEAD:src/main/java/com/buaa/review/algorithm/leetc_algorithm/lc2104/Lc_2021_04.java
-        if(this.list.size() > 0)
-            this.list.remove(list.size() - 1);
-    }
-
-    public int top() {
-        return list.size() != 0 ? list.get(0) : 0;
-=======
         if(this.list.size() > 0) {
             if (this.top() == this.min) {
                 this.list.remove(list.size() - 1);
@@ -181,7 +173,6 @@ class MinStack {
         if(list.size() != 0)
             return this.list.get(list.size() - 1);
         return 0;
->>>>>>> f12a09a82728d42c0a0090700cbce3bf86a11782:src/main/java/com/buaa/review/algorithm/leetc_algorithm/Lc_2021_04.java
     }
 
     public int getMin() {
