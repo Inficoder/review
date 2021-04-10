@@ -28,33 +28,20 @@ public class day09 {
      */
 
     public static int rob(int[] nums) {
-        if(nums.length < 1) return 0;
-        if(nums.length == 1) return nums[0];
-        if(nums.length == 2) return Math.max(nums[0], nums[1]);
-        //2,7,9,3,1
-        int res = 0;
-        int i = 0;
-        while(i < nums.length - 2){
-            if(nums[i] + nums[i + 2] > nums[i + 1]){
-                res += nums[i] + nums[i + 2];
-                i += 4;
-            }else{
-                res += nums[i + 1];
-                i += 3;
-            }
-            System.out.println(res + "- i:"+ i);
-
-            if(i >= nums.length - 2 && i < nums.length){
-                res += nums[i];
-            }
-
+        int[] dp = new int[nums.length + 1];
+        dp[0] = 0;
+        dp[1] = nums[0];
+        for (int i = 2; i <= nums.length; i++) {
+            dp[i] = Math.max(dp[i - 1],  + nums[i - 1] + dp[i - 2]);
         }
-        return res;
+        return dp[nums.length];
     }
+
 
     public static void main(String[] args) {
         //2,7,9,3,1
-        int[] arr = {1,1,1,2};
+        int[] arr = {1,1,1,2,5};
         System.out.println(rob(arr));
     }
 }
+
