@@ -1,9 +1,6 @@
 package com.buaa.review.algorithm.leetc_algorithm.lc2104;
 
-import com.buaa.review.java.injection.S;
-
 import java.util.HashMap;
-import java.util.List;
 import java.util.Stack;
 
 public class day13 {
@@ -113,7 +110,7 @@ public class day13 {
     }
 }
 
-// 04 13 
+// 04 13
 class MyQueue {
     Stack<Integer> s1;
     Stack<Integer> s2;

@@ -1,26 +1,27 @@
-public int climbStairs(String date){
-    HashMap<Integer, Integer> map = new HashMap<>();
-    map.put(1, 31);
-    map.put(2, 28);
-    map.put(3, 31);
-    map.put(4, 30);
-    map.put(5, 31);
-    map.put(6, 30);
-    map.put(7, 31);
-    map.put(8, 31);
-    map.put(9, 30);
-    map.put(10, 31);
-    map.put(11, 30);
-    map.put(12, 31);
-    String[] strArr = date.split("-");
-    int year = Integer.parseInt(strArr[0]);
-    int month = Integer.parseInt(strArr[1]);
-    int day = Integer.parseInt(strArr[2]);
-    int res = 0;
-    if(year % 4 == 0) res ++;
-    for(int i = 1; i < month; i ++){
-        res += map.get(i);
+public int numWays(int n){
+    if(n == 0) return 0;
+    if(n == 1) return 1;
+    return numWays(n - 1) + numWays(n - 2);
+}
+
+public static int numWays2(){
+    if(n == 0) return 1;
+    if(n == 1) return 1;
+    int i = 1;
+    int j = 1;
+    int temp;
+    while(n >= 2){
+       temp = i + j;
+       i = j;
+       j = temp;
+       n--;
     }
-    res += day;
-    return res;
+    return j;
+}
+public static TreeNode invertTree(TreeNode root){
+    TreeNode temp;
+    temp = root.left;
+    root.left = root.right;
+    root.right = temp;
+    return root;
 }
