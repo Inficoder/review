@@ -181,10 +181,181 @@ public class day16 {
         return res;
     }
 
+    /**
+     * 斐波那契数，通常用 F(n) 表示，形成的序列称为 斐波那契数列 。该数列由 0 和 1 开始，后面的每一项数字都是前面两项数字的和。也就是：
+     *
+     * F(0) = 0，F(1) = 1
+     * F(n) = F(n - 1) + F(n - 2)，其中 n > 1
+     * 给你 n ，请计算 F(n) 。
+     *
+     * 示例 1：
+     *
+     * 输入：2
+     * 输出：1
+     * 解释：F(2) = F(1) + F(0) = 1 + 0 = 1
+     * 示例 2：
+     *
+     * 输入：3
+     * 输出：2
+     * 解释：F(3) = F(2) + F(1) = 1 + 1 = 2
+     * 示例 3：
+     *
+     * 输入：4
+     * 输出：3
+     * 解释：F(4) = F(3) + F(2) = 2 + 1 = 3
+     *  
+     *
+     * 提示：
+     *
+     * 0 <= n <= 30
+     */
+
+    public static int fib(int n) {
+        if(n == 0) return 0;
+        if(n == 1) return 1;
+        int i = 1, j = 1;
+        while(n > 2){
+            int temp = i + j;
+            i = j;
+            j = temp;
+            n --;
+        }
+        return j;
+    }
+
+    /**
+     * 实现一种算法，找出单向链表中倒数第 k 个节点。返回该节点的值。
+     *
+     * 注意：本题相对原题稍作改动
+     *
+     * 示例：
+     *
+     * 输入： 1->2->3->4->5 和 k = 2
+     * 输出： 4
+     * 说明：
+     *
+     * 给定的 k 保证是有效的。
+     */
+
+    /**
+     * Definition for singly-linked list.
+     * public class ListNode {
+     *     int val;
+     *     ListNode next;
+     *     ListNode(int x) { val = x; }
+     * }
+     */
+    //1.逆置 后取k个
+    //2.先遍历大小 取n-k
+    //3.快慢指针 √
+    public static int kthToLast(ListNode head, int k) {
+        ListNode quick = head, slow = head;
+        while(k > 0){
+            quick = quick.next;
+            k -- ;
+        }
+        while(quick != null){
+            quick = quick.next;
+            slow = slow.next;
+        }
+        return slow.val;
+    }
+
+    /**
+     * 给定一个头结点为 head 的非空单链表，返回链表的中间结点。
+     * 如果有两个中间结点，则返回第二个中间结点。
+     *
+     * 示例 1：
+     * 输入：[1,2,3,4,5]
+     * 输出：此列表中的结点 3 (序列化形式：[3,4,5])
+     * 返回的结点值为 3 。 (测评系统对该结点序列化表述是 [3,4,5])。
+     * 注意，我们返回了一个 ListNode 类型的对象 ans，这样：
+     * ans.val = 3, ans.next.val = 4, ans.next.next.val = 5, 以及 ans.next.next.next = NULL.
+     * 示例 2：
+     *
+     * 输入：[1,2,3,4,5,6]
+     * 输出：此列表中的结点 4 (序列化形式：[4,5,6])
+     * 由于该列表有两个中间结点，值分别为 3 和 4，我们返回第二个结点。
+     *
+     * 提示：
+     * 给定链表的结点数介于 1 和 100 之间。
+     */
+    //同样快慢指针 quick 一次走两个  slow一次走一个
+    public static ListNode middleNode(ListNode head) {
+        if(head == null) return null;
+        ListNode quick = head, slow = head;
+        while(quick != null && quick.next != null) {
+            quick = quick.next.next;
+            slow = slow.next;
+        }
+        return slow;
+    }
+
+    /**
+     * 输入两个递增排序的链表，合并这两个链表并使新链表中的节点仍然是递增排序的。
+     *
+     * 示例1：
+     *
+     * 输入：1->2->4, 1->3->4
+     * 输出：1->1->2->3->4->4
+     * 限制：
+     *
+     * 0 <= 链表长度 <= 1000
+     */
+
+    public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if(l1 == null) return l2;
+        if(l2 == null) return l1;
+        ListNode head = new ListNode();
+        ListNode res = head;
+        while(l1 != null || l2 != null){
+            if(l1.val < l2.val){
+                head.next = new ListNode(l1.val);
+                l1 = l1.next;
+            }else if(l1.val > l2.val){
+                head.next = new ListNode(l2.val);
+                l2 = l2.next;
+            }else{
+                head.next = new ListNode(l1.val);
+                head = head.next;
+                head.next = new ListNode(l2.val);
+                l1 = l1.next;
+                l2 = l2.next;
+            }
+            head = head.next;
+            if(l1 == null){
+                head.next = l2;
+                break;
+            }
+            if(l2 == null){
+                head.next = l1;
+                break;
+            }
+
+        }
+        return res.next;
+    }
+
+
     public static void main(String[] args) {
-        String[] arr = {"cat","bt","hat","tree"};
-        String s = "atach";
-        int i = countCharacters(arr, s);
-        System.out.println(i);
+        ListNode n1 = new ListNode(1);
+        ListNode n2 = new ListNode(2);
+        ListNode n3 = new ListNode(4);
+
+
+        ListNode n4 = new ListNode(1);
+        ListNode n5 = new ListNode(3);
+        ListNode n6 = new ListNode(4);
+        n1.next = n2;
+        n2.next = n3;
+
+        n4.next = n5;
+        n5.next = n6;
+
+        ListNode listNode = mergeTwoLists(n1, n4);
+        while(listNode != null){
+            System.out.println(listNode.val);
+            listNode = listNode.next;
+        }
     }
 }
