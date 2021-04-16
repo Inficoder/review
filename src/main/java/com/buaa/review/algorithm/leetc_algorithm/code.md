@@ -1,27 +1,8 @@
-public int numWays(int n){
-    if(n == 0) return 0;
-    if(n == 1) return 1;
-    return numWays(n - 1) + numWays(n - 2);
-}
-
-public static int numWays2(){
-    if(n == 0) return 1;
-    if(n == 1) return 1;
-    int i = 1;
-    int j = 1;
-    int temp;
-    while(n >= 2){
-       temp = i + j;
-       i = j;
-       j = temp;
-       n--;
+public static boolean checkPerfectNumber(int num) {
+    int res = 1;
+    for(int i = 2; i < num; i ++){
+        if(num % i == 0)
+            res += i;
     }
-    return j;
-}
-public static TreeNode invertTree(TreeNode root){
-    TreeNode temp;
-    temp = root.left;
-    root.left = root.right;
-    root.right = temp;
-    return root;
+    return num == res;
 }
