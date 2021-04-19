@@ -1,4 +1,4 @@
-package com.buaa.review.algorithm.leetc_algorithm;
+package com.buaa.review.algorithm.leetc_algorithm.lc2102;
 
 import java.net.Inet4Address;
 import java.util.ArrayList;

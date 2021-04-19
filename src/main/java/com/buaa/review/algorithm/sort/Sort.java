@@ -75,6 +75,21 @@ public class Sort {
         return arr;
     }
 
+    public static int[] quickSort(int[] arr, int l, int r){
+        while(l < r){
+            while(arr[l] <= arr[l] && l < r)
+                l++;
+            while(arr[r] >= arr[l] && l < r)
+                r--;
+            int temp = arr[l];
+            arr[l] = arr[r];
+            arr[r] = temp;
+        }
+        quickSort(arr, l, r - 1);
+        quickSort(arr, l+1, r);
+        return arr;
+    }
+
 
     public static void main(String[] args) {
         int[] arr = {7, 6, 1, 9, 8, 5, 2, 3};

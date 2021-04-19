@@ -1,6 +1,4 @@
-package com.buaa.review.algorithm.day_code;
-
-import java.util.List;
+package com.buaa.review.algorithm.leetc_algorithm.lc2103;
 
 public class lc0331 {
 
